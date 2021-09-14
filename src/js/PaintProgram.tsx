@@ -62,7 +62,7 @@ export abstract class PaintProgram {
       throw new Error('PaintProgram must define a key and className');
     }
     const blob = blobify(this.toString());
-    console.log(blob);
+
     return CSS.paintWorklet
       .addModule(blob)
       .catch(error => console.error(error));
