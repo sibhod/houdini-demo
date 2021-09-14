@@ -1,94 +1,52 @@
 import React from 'react';
-import { Link, Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { AnimatePresence, motion } from 'framer-motion';
+import styled, { Interpolation } from 'styled-components';
 
-import { Button } from 'components/Button';
+import { usePaintWorklet } from 'usePaintWorklet';
+import { StripesPaintProgram } from 'StripesPaintProgram';
+import 'css-paint-polyfill';
 
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: 100px 1fr;
-  height: 100%;
-`;
-
-const Nav = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-between;
-  padding: 20px;
-  margin: auto;
-  max-width: 400px;
+  background-color: #daede2;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const ContentContainer = styled.div`
-  position: relative;
-`;
+interface PaintProps {
+  readonly css?: Interpolation<any>;
+}
 
-const Content = styled.div`
-  font-size: 50vw;
-  text-align: center;
+const Text = styled.div<PaintProps>`
+  --progress: 0%;
+  --size: 32px;
+  --fill: #77c4d3;
+  --stripe-color: #ea2e49;
+  color: transparent;
+  font-size: 10em;
+  font-family: 'Work Sans', sans-serif;
+  line-height: 0.75em;
+  background-clip: text;
+  background-size: var(--size) var(--size);
+  -webkit-background-clip: text;
+  padding-bottom: 40px;
+  user-select: none;
+  transition: --progress 0.3s ease-out;
+  &:hover {
+    --progress: 100%;
+  }
+  ${props => props.css};
 `;
-
-const PATHS = ['🤔', '😰', '🦄', '🍖', '🍕'];
 
 export const App = () => {
-  const location = useLocation();
+  const program = usePaintWorklet(StripesPaintProgram);
 
   return (
     <Container>
-      <Nav>
-        {PATHS.map(s => (
-          <Link to={`/${s}`} key={s}>
-            <Button>{s}</Button>
-          </Link>
-        ))}
-      </Nav>
-      <ContentContainer>
-        <AnimatePresence>
-          <Switch location={location} key={location.pathname}>
-            {PATHS.map(s => (
-              <Route exact path={`/${s}`} key={s}>
-                <Test>{s.toUpperCase()}</Test>
-              </Route>
-            ))}
-            <Route>
-              <Redirect to={`/${PATHS[0]}`} />
-            </Route>
-          </Switch>
-        </AnimatePresence>
-      </ContentContainer>
+      <Text css={program.css}>
+        Almost before we knew it, we had left the ground.
+      </Text>
     </Container>
-  );
-};
-
-const varients = {
-  start: {
-    y: -20,
-    opacity: 0,
-  },
-  in: {
-    y: 0,
-    opacity: 1,
-    transition: { ease: 'circOut', duration: 0.3 },
-  },
-  out: {
-    y: 20,
-    opacity: 0,
-    transition: { ease: 'circOut', duration: 0.2 },
-  },
-};
-
-const Test = ({ children }) => {
-  return (
-    <motion.div
-      style={{ position: 'absolute', top: 0, width: '100%' }}
-      variants={varients}
-      initial='start'
-      animate='in'
-      exit='out'
-    >
-      <Content>{children}</Content>
-    </motion.div>
   );
 };

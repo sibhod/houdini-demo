@@ -2855,6 +2855,11 @@ css-loader@^5.0.1:
     schema-utils "^3.0.0"
     semver "^7.3.2"
 
+css-paint-polyfill@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/css-paint-polyfill/-/css-paint-polyfill-3.3.0.tgz#4e4fe3f8600b2fa843857c44c90021bcd1dfbafb"
+  integrity sha512-nxAPuZ0mMYX6BMTqER8f+961Yjz5rzpOR1TAFoQehYV4PwQ5M9pJ02KEH25CgcCg+VciV7OW6b+F7glGSjEuQw==
+
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"

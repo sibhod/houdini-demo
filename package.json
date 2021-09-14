@@ -1,5 +1,5 @@
 {
-  "name": "react-typescript-boilerplate",
+  "name": "css-houdini-demo",
   "version": "0.0.1",
   "main": "index.tsx",
   "license": "MIT",
@@ -40,6 +40,7 @@
     "@typescript-eslint/parser": "^4.14.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
+    "css-paint-polyfill": "^3.3.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
