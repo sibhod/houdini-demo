@@ -2,9 +2,8 @@
   "name": "css-houdini-demo",
   "version": "0.0.1",
   "main": "index.tsx",
-  "homepage": "https://sibhod.github.io/houdini-demo",
+  "homepage": "https://sibhod.com/houdini-demo",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "start": "webpack serve --hot --mode=development",
     "build": "webpack --mode=production",
