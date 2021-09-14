@@ -31,10 +31,12 @@ const Text = styled.div<PaintProps>`
   background-size: var(--size) var(--size);
   -webkit-background-clip: text;
   padding-bottom: 40px;
-  user-select: none;
   transition: --progress 0.3s ease-out;
   &:hover {
     --progress: 100%;
+  }
+  &::selection {
+    background: #f6f79290;
   }
   ${props => props.css};
 `;
