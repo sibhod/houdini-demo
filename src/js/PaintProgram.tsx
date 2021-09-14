@@ -36,6 +36,8 @@ export abstract class PaintProgram {
   }
 
   protected toString(): string {
+    const paintFuncString = this.paint.toString();
+
     return `
       class ${this.className} {
         static get inputArguments() {
@@ -50,7 +52,7 @@ export abstract class PaintProgram {
           return ${JSON.stringify(this.options)};
         }
 
-        ${this.paint.toString().slice(9)}
+        paint${paintFuncString.slice(paintFuncString.indexOf('('))}
       }
 
       registerPaint('${this.key}', ${this.className});
